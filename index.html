@@ -449,7 +449,9 @@ html{scrollbar-width:thin;scrollbar-color:rgba(233,223,208,.15) transparent}
   border:1px solid var(--border);border-radius:var(--radius);
   position:relative;overflow:hidden;
 }
-@media(min-width:760px){.release-plate{grid-template-columns:minmax(260px,380px) 1fr;align-items:center}}
+/* align-items:start locks the art in place — opening the lyrics
+   only grows the plate downward instead of re-centering the art */
+@media(min-width:760px){.release-plate{grid-template-columns:minmax(260px,380px) 1fr;align-items:start}}
 .release-plate::before{ /* art's own light spills onto the plate */
   content:"";position:absolute;inset:0;
   background:radial-gradient(circle at 22% 40%,var(--accent-soft),transparent 55%);
