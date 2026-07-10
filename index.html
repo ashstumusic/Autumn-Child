@@ -119,15 +119,15 @@
   --text-dim: #7c7060;
   --heading:  #f3ebdc;
 
-  --accent:      #c97b2d;  /* burnt orange — the only action color */
-  --accent-deep: #8f5520;  /* deep rust — pressed / hover states   */
-  --accent-text: #e0a05c;  /* light autumn amber for text          */
-  --accent-glow: rgba(201,123,45,.16);
-  --accent-soft: rgba(201,123,45,.06);
+  --accent:      #9c7850;  /* dusty sepia amber — the only action color */
+  --accent-deep: #6e5437;  /* deep umber — pressed / hover states   */
+  --accent-text: #c2a175;  /* muted amber for text                 */
+  --accent-glow: rgba(156,120,80,.16);
+  --accent-soft: rgba(156,120,80,.06);
 
   --border:        rgba(233,223,208,.08);
   --border-hover:  rgba(233,223,208,.16);
-  --border-active: rgba(201,123,45,.45);
+  --border-active: rgba(156,120,80,.45);
 
   --blur-heavy: blur(40px) saturate(1.25);
   --blur-mid:   blur(22px) saturate(1.15);
@@ -184,7 +184,7 @@ body{
 }
 img{display:block;max-width:100%}
 a{color:inherit}
-::selection{background:rgba(201,123,45,.3);color:#fff6ea}
+::selection{background:rgba(156,120,80,.3);color:#fff6ea}
 :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
 html{scrollbar-width:thin;scrollbar-color:rgba(233,223,208,.15) transparent}
 ::-webkit-scrollbar{width:4px}
@@ -229,15 +229,15 @@ html{scrollbar-width:thin;scrollbar-color:rgba(233,223,208,.15) transparent}
 .color-wash{
   position:fixed;inset:0;pointer-events:none;z-index:1;opacity:.5;
   background:
-    radial-gradient(ellipse 80% 60% at 15% 0%, rgba(176,92,34,.08), transparent 60%),
-    radial-gradient(ellipse 70% 55% at 85% 100%, rgba(176,92,34,.10), transparent 60%);
+    radial-gradient(ellipse 80% 60% at 15% 0%, rgba(150,105,60,.07), transparent 60%),
+    radial-gradient(ellipse 70% 55% at 85% 100%, rgba(150,105,60,.09), transparent 60%);
   animation:wash 24s ease-in-out infinite alternate;
 }
 @keyframes wash{from{opacity:.35}to{opacity:.65}}
 
 .leaves-layer{position:fixed;inset:0;pointer-events:none;z-index:3;overflow:hidden}
 /* monotone autumn: strip native color, re-tint every leaf to one burnt-orange tone */
-.leaf{position:absolute;top:0;left:0;will-change:transform;filter:grayscale(1) sepia(1) saturate(1.7) hue-rotate(-12deg) brightness(.82) drop-shadow(0 0 14px rgba(201,123,45,.12))}
+.leaf{position:absolute;top:0;left:0;will-change:transform;filter:grayscale(1) sepia(.9) saturate(1.05) hue-rotate(-10deg) brightness(.8) drop-shadow(0 0 14px rgba(156,120,80,.12))}
 
 /* ═══════════════════════════════════════════════════════════
    NAV — disappears into the hero, returns as dark glass.
@@ -279,7 +279,7 @@ html{scrollbar-width:thin;scrollbar-color:rgba(233,223,208,.15) transparent}
 .nav-platform img,.share-btn img{width:15px;height:15px;object-fit:contain}
 .nav-links .nav-platform{padding:0;align-self:center;margin-right:.35rem}
 /* one autumn tint for every UI icon — no icon keeps its native color */
-.nav-platform img,.share-btn img,.btn img{filter:grayscale(1) sepia(1) saturate(1.6) hue-rotate(-12deg) brightness(1.15)}
+.nav-platform img,.share-btn img,.btn img{filter:grayscale(1) sepia(.9) saturate(1.05) hue-rotate(-10deg) brightness(1.1)}
 /* icons sitting on filled (orange) buttons go near-black like their label text */
 .btn-fill img,.drawer-bandcamp img{filter:grayscale(1) brightness(.15)}
 .nav-toggle{
@@ -563,7 +563,7 @@ html{scrollbar-width:thin;scrollbar-color:rgba(233,223,208,.15) transparent}
 .band-photo::after{
   content:"";position:absolute;inset:0;
   background:linear-gradient(180deg,transparent 55%,var(--bg) 100%),
-             radial-gradient(circle at 80% 20%,rgba(176,92,34,.12),transparent 60%);
+             radial-gradient(circle at 80% 20%,rgba(150,105,60,.11),transparent 60%);
   pointer-events:none;
 }
 .band-photo figcaption{
