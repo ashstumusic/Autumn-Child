@@ -831,14 +831,16 @@ body.player-active{padding-bottom:68px}
 .fs-ctrl.active{color:var(--accent-text)}
 .fs-play{
   width:68px;height:68px;border-radius:50%;
-  background:var(--accent);border:none;cursor:pointer;
+  background:rgba(233,223,208,.14);border:1px solid rgba(233,223,208,.18);
+  cursor:pointer;
   display:flex;align-items:center;justify-content:center;
-  color:#141414;
-  box-shadow:0 6px 24px var(--accent-glow);
-  transition:transform .15s var(--ease-spring),box-shadow .25s var(--ease);
+  color:var(--text);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  box-shadow:0 6px 24px rgba(0,0,0,.35);
+  transition:transform .15s var(--ease-spring),background .25s var(--ease);
   -webkit-tap-highlight-color:transparent;
 }
-.fs-play:hover{box-shadow:0 8px 32px var(--accent-glow);transform:scale(1.04)}
+.fs-play:hover{background:rgba(233,223,208,.24);transform:scale(1.04)}
 .fs-play:active{transform:scale(.9)}
 .fs-play svg{margin-left:0}
 .fs-play[aria-label="Play"] svg{margin-left:3px}

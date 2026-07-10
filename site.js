@@ -203,7 +203,7 @@ function npLoad(track, album, src, autoplay) {
   if (_npArt && art) _npArt.src = encodeURI(art);
   if (_srAnnounce) _srAnnounce.textContent = 'Now playing: ' + track + (album ? ' from ' + album : '');
   npAudio.src = src; _src = src;
-  try { sessionStorage.setItem('ac_track', track); sessionStorage.setItem('ac_album', album || ''); sessionStorage.setItem('ac_src', src); if (art) sessionStorage.setItem('ac_art', art); } catch (e) {}
+  try { sessionStorage.setItem('ac_track', track); sessionStorage.setItem('ac_album', album || ''); sessionStorage.setItem('ac_src', src); sessionStorage.setItem('ac_rel', pState.releaseIdx); if (art) sessionStorage.setItem('ac_art', art); } catch (e) {}
   npShow();
   if (autoplay) { var intent = ++_playIntent; npAudio.play().then(function() { if (intent === _playIntent) npSetPlaying(true); }).catch(function() {}); }
 }
@@ -328,8 +328,8 @@ npAudio.addEventListener('ended', function() {
 
   function fsUpdateArt() {
     var art = npGetArt();
-    if (art) {
-      var encoded = encodeURI(art);
+    var encoded = art ? encodeURI(art) : ((_npArt && _npArt.getAttribute('src')) || '');
+    if (encoded) {
       fsArt.src = encoded;
       fsBg.style.backgroundImage = 'url("' + encoded + '")';
     }
@@ -417,6 +417,13 @@ npAudio.addEventListener('ended', function() {
     var album = sessionStorage.getItem('ac_album') || '';
     var t = parseFloat(sessionStorage.getItem('ac_time') || '0');
     if (!src) return;
+    // restore full player state so fullscreen art/controls survive reloads
+    var relIdx = parseInt(sessionStorage.getItem('ac_rel'), 10);
+    if (relIdx >= 0 && RELEASE_LIST[relIdx]) {
+      pState.releaseIdx = relIdx;
+      pState.playlist = RELEASE_LIST[relIdx].tracks.map(function(tk, i) { return { title: tk.title, file: tk.file, releaseIdx: relIdx, trackIdx: i }; });
+      pState.plIdx = 0;
+    }
     var savedArt = sessionStorage.getItem('ac_art') || '';
     if (savedArt && _npArt) _npArt.src = savedArt;
     npLoad(track, album, src, false);
