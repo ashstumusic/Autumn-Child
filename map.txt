@@ -1,0 +1,122 @@
+**Project Root: `Ash Music`**
+
+* `musician-site.html`
+* `map.txt`
+* `Ash Stu - Electronic Press Kit.zip`
+
+**`Lyrics`**
+
+* `Only_A_Baby,_Vol._-_2.txt`
+
+**`Essays`**
+
+* `essay-silence.html`
+* `essay-unfit.html`
+* `Silence Is Not a Strength; Observations of the Inherited Quest for Wonder, Empowerment, and Belonging`
+* `Unfit for Cultivation; A True Fable of Why Short-Sighted Apes Make Losing Leaders`
+
+**`Audio`**
+
+* `Waste My Time (feat. Trent Runyon)` (Folder)
+  * `Waste My Time (feat. Trent Runyon).mp3`
+* `Waste My Time (feat. Trent Runyon).zip`
+
+* `Drive Me Home` (Folder)
+  * `Drive Me Home.mp3`
+* `Drive Me Home.zip`
+
+* `Only a Baby, Vol. 1` (Folder)
+  * `01. THE COSMOS IS ALIVE.mp3`
+  * `02. the tragedy of the gifted child.mp3`
+  * `03. SOMEWHERE SOMETIME.mp3`
+  * `04. am soda.mp3`
+  * `05. THE ONE WHO STUNS THE BIRDS.mp3`
+  * `06. the raven.mp3`
+  * `07. VCR.mp3`
+  * `08. the cloud for the desert.mp3`
+  * `09. PRETEND.mp3`
+  * `10. sonnet for my delusion.mp3`
+  * `11. PICK UP THE PHONE.mp3`
+  * `12. the outdoor plant.mp3`
+  * `13. WHY HAVE EYES.mp3`
+  * `14. unanswerable questions.mp3`
+  * `15. A GRIEF PRESERVED.mp3`
+  * `16. future lives.mp3`
+  * `17. DONT WISH YOUR LIFE AWAY.mp3`
+  * `18. the tragedy of the gifted child (reprise).mp3`
+* `Only a Baby, Vol. 1.zip`
+
+* `Only a Baby, Vol. 2` (Folder)
+  * `01. SummertimeEvenontheMoon.mp3`
+  * `02. CoolCatCantComprehend.mp3`
+  * `03. Peacekeepers.mp3`
+  * `04. DirgeforDucklings.mp3`
+  * `05. SaviorComplicated.mp3`
+  * `06. AnnabelLena.mp3`
+  * `07. PerformativesAnonymous.mp3`
+  * `08. TheWanderingJerk.mp3`
+  * `09. TheoryofHope.mp3`
+* `Only a Baby, Vol. 2.zip`
+
+**`Videos`**
+
+* `"VCR" - Ash Stu original.mp4`
+* `"The Raven" - Ash Stu original.mp4`
+* `"The Cloud for the Desert" - Ash Stu original.mp4`
+* `"WHY HAVE EYES" - Ash Stu original.mp4`
+* `"Brain-Dead Corollary (Trust Me Bro)" - Ash Stu original.mp4`
+* `"Theory of Hope" - Ash Stu original.mp4`
+* `Thumbnails` (Folder)
+  * `(Thumb) "WHY HAVE EYES" - Ash Stu original.png`
+  * `(Thumb) "Theory of Hope" - Ash Stu original.png`
+  * `(Thumb) "The Cloud for the Desert" - Ash Stu original.png`
+  * `(Thumb) "Brain-Dead Corollary (Trust Me Bro)" - Ash Stu original.png`
+  * `(Thumb) "The Raven" - Ash Stu original.png`
+  * `(Thumb) "VCR" - Ash Stu original.png`
+
+**`Images`**
+
+* `Hero.png`
+* `0_Stage_Keys.png`
+* `Icon.png`
+* `Releases` (Folder)
+  * `Waste My Time (feat. Trent Runyon).png`
+  * `Drive Me Home.png`
+  * `Only a Baby, Vol. 1.png`
+  * `Only a Baby, Vol. 2.png`
+
+**`Fonts`**
+
+* `Header-Italic.ttf`
+* `Header.ttf`
+* `Body.ttf`
+* `xperimental` (Folder)
+  * `pup-big.ttf`
+  * `Boiled Pasta.ttf`
+  * `Sans Fransisco Semi Bold.ttf`
+  * `Sans Fransisco Semi Bold.otf`
+  * `Sans Fransisco Regular.otf`
+  * `Sans Fransisco Regular.ttf`
+  * `Gravity-Italic.otf`
+  * `Gravity-BoldItalic.otf`
+  * `Gravity-UltraLightItalic.otf`
+  * `Gravity-LightItalic.otf`
+  * `Gravity-BookItalic.otf`
+  * `Gravity-UltraLight.otf`
+  * `Gravity-Regular.otf`
+  * `Gravity-Light.otf`
+  * `Gravity-Book.otf`
+  * `Gravity-Bold.otf`
+  * `BabelSans-Oblique.ttf`
+  * `BabelSans.ttf`
+  * `BabelSans-Bold.ttf`
+  * `BabelSans-BoldOblique.ttf`
+  * `OldSansBlackUnderline.ttf`
+  * `OldSansBlack.ttf`
+
+**`Icons`**
+
+* `Youtube.png`
+* `Substack.png`
+* `Apple_Music.png`
+* `Spotify.png`

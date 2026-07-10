@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="robots" content="noindex, nofollow"/>
+<title>Admin — autumn child</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f5f5; color: #1a1a1a; line-height: 1.5; padding: 0; }
+.wrap { max-width: 900px; margin: 0 auto; padding: 1.5rem; }
+.toolbar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem; gap: 1rem; flex-wrap: wrap; }
+.toolbar h1 { font-size: 1.4rem; }
+h2 { font-size: 1.1rem; margin: 2rem 0 1rem; border-bottom: 2px solid #084C61; padding-bottom: .4rem; color: #084C61; display: flex; align-items: center; justify-content: space-between; gap: .5rem; }
+.login { max-width: 400px; margin: 4rem auto; padding: 0 1.5rem; }
+.login h1 { margin-bottom: .5rem; }
+.login input { width: 100%; padding: .75rem; border: 1px solid #ddd; border-radius: 6px; font-size: .9rem; margin-bottom: .75rem; }
+.login button, .btn { background: #084C61; color: #fff; border: none; padding: .6rem 1.2rem; border-radius: 6px; cursor: pointer; font-size: .8rem; transition: background .15s; }
+.login button:hover, .btn:hover { background: #06394a; }
+.btn:disabled { opacity: .5; cursor: not-allowed; }
+.btn-sm { padding: .3rem .6rem; font-size: .7rem; }
+.btn-danger { background: #d92510; }
+.btn-danger:hover { background: #b71e0d; }
+.btn-ghost { background: transparent; color: #084C61; border: 1px solid #ddd; }
+.btn-ghost:hover { border-color: #084C61; }
+.stats { display: flex; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+.stat { background: #fff; border: 1px solid #e0e0e0; border-radius: 8px; padding: 1rem 1.5rem; flex: 1; min-width: 120px; }
+.stat-num { font-size: 1.8rem; font-weight: 700; color: #084C61; }
+.stat-label { font-size: .7rem; color: #888; text-transform: uppercase; letter-spacing: .1em; }
+.search-bar { margin-bottom: .75rem; }
+.search-bar input { width: 100%; padding: .6rem .9rem; border: 1px solid #ddd; border-radius: 6px; font-size: .85rem; background: #fff; }
+.search-bar input:focus { outline: none; border-color: #084C61; box-shadow: 0 0 0 3px rgba(8,76,97,.08); }
+.card { background: #fff; border: 1px solid #e0e0e0; border-radius: 8px; padding: 1rem; margin-bottom: .75rem; }
+.card.unread { border-left: 3px solid #084C61; }
+.card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: .5rem; flex-wrap: wrap; gap: .25rem; }
+.card-name { font-weight: 600; }
+.card-email { font-size: .8rem; color: #666; }
+.card-date { font-size: .7rem; color: #999; }
+.card-body { font-size: .85rem; color: #333; white-space: pre-wrap; margin: .5rem 0; }
+.card-actions { display: flex; gap: .4rem; margin-top: .5rem; align-items: center; flex-wrap: wrap; }
+.confirm-text { font-size: .8rem; color: #d92510; font-weight: 500; }
+.sub-row { display: flex; align-items: center; justify-content: space-between; padding: .6rem 0; border-bottom: 1px solid #f0f0f0; font-size: .85rem; }
+.sub-row:last-child { border-bottom: none; }
+.empty { color: #999; font-style: italic; font-size: .85rem; padding: 2rem; text-align: center; }
+.error { color: #d92510; font-size: .85rem; margin: 1rem 0; }
+.pagination { display: flex; align-items: center; justify-content: center; gap: .5rem; margin: 1rem 0; font-size: .8rem; }
+.pagination .btn { padding: .3rem .8rem; }
+.page-info { color: #666; }
+#content { display: none; }
+</style>
+</head>
+<body>
+
+<div class="login" id="login-form">
+  <h1>Admin Login</h1>
+  <input type="password" id="key-input" placeholder="Admin key" autofocus/>
+  <button onclick="doLogin()">Log In</button>
+  <p class="error" id="login-error" style="display:none"></p>
+</div>
+
+<div id="content">
+  <div class="wrap">
+    <div class="toolbar">
+      <h1>autumn child — Admin</h1>
+      <button class="btn btn-ghost" onclick="doLogout()">Log Out</button>
+    </div>
+
+    <div class="stats" id="stats"></div>
+
+    <h2>Shows</h2>
+    <div class="card">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:.75rem;margin-bottom:.75rem">
+        <div>
+          <label style="font-size:.7rem;color:#888;text-transform:uppercase;letter-spacing:.1em;display:block;margin-bottom:.25rem">Date</label>
+          <input type="date" id="show-date" style="width:100%;padding:.55rem .9rem;border:1px solid #ddd;border-radius:6px;font-size:.85rem"/>
+        </div>
+        <div>
+          <label style="font-size:.7rem;color:#888;text-transform:uppercase;letter-spacing:.1em;display:block;margin-bottom:.25rem">Venue</label>
+          <input type="text" id="show-venue" placeholder="The Blue Note" style="width:100%;padding:.55rem .9rem;border:1px solid #ddd;border-radius:6px;font-size:.85rem"/>
+        </div>
+        <div>
+          <label style="font-size:.7rem;color:#888;text-transform:uppercase;letter-spacing:.1em;display:block;margin-bottom:.25rem">City</label>
+          <input type="text" id="show-city" placeholder="Oklahoma City, OK" style="width:100%;padding:.55rem .9rem;border:1px solid #ddd;border-radius:6px;font-size:.85rem"/>
+        </div>
+      </div>
+      <div style="margin-bottom:.75rem">
+        <label style="font-size:.7rem;color:#888;text-transform:uppercase;letter-spacing:.1em;display:block;margin-bottom:.25rem">Ticket URL (optional)</label>
+        <input type="url" id="show-tickets" placeholder="https://…" style="width:100%;padding:.55rem .9rem;border:1px solid #ddd;border-radius:6px;font-size:.85rem"/>
+      </div>
+      <div style="margin-bottom:.75rem">
+        <label style="font-size:.7rem;color:#888;text-transform:uppercase;letter-spacing:.1em;display:block;margin-bottom:.25rem">Details (optional)</label>
+        <textarea id="show-details" rows="2" placeholder="With supporting acts… doors at 8pm…" style="width:100%;padding:.55rem .9rem;border:1px solid #ddd;border-radius:6px;font-size:.85rem;resize:vertical;font-family:inherit"></textarea>
+      </div>
+      <div class="card-actions">
+        <label style="font-size:.8rem;display:flex;align-items:center;gap:.4rem;cursor:pointer">
+          <input type="checkbox" id="show-notify" checked/> Email all subscribers about this show
+        </label>
+        <button class="btn" id="show-add" onclick="addShow()">Add Show</button>
+        <span id="show-status" style="font-size:.8rem"></span>
+      </div>
+    </div>
+    <div id="shows-admin-list"></div>
+
+    <h2>Announce a Release</h2>
+    <div class="card">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:.75rem;margin-bottom:.75rem">
+        <div>
+          <label style="font-size:.7rem;color:#888;text-transform:uppercase;letter-spacing:.1em;display:block;margin-bottom:.25rem">Name</label>
+          <input type="text" id="rel-name" placeholder="drain (Demo)" style="width:100%;padding:.55rem .9rem;border:1px solid #ddd;border-radius:6px;font-size:.85rem"/>
+        </div>
+        <div>
+          <label style="font-size:.7rem;color:#888;text-transform:uppercase;letter-spacing:.1em;display:block;margin-bottom:.25rem">Type</label>
+          <select id="rel-type" style="width:100%;padding:.55rem .9rem;border:1px solid #ddd;border-radius:6px;font-size:.85rem;background:#fff">
+            <option>Single</option><option>EP</option><option>Album</option><option>Demo</option>
+          </select>
+        </div>
+      </div>
+      <div style="margin-bottom:.75rem">
+        <label style="font-size:.7rem;color:#888;text-transform:uppercase;letter-spacing:.1em;display:block;margin-bottom:.25rem">Listen link (Bandcamp etc.)</label>
+        <input type="url" id="rel-link" placeholder="https://autumnchildokc.bandcamp.com/…" style="width:100%;padding:.55rem .9rem;border:1px solid #ddd;border-radius:6px;font-size:.85rem"/>
+      </div>
+      <div style="margin-bottom:.75rem">
+        <label style="font-size:.7rem;color:#888;text-transform:uppercase;letter-spacing:.1em;display:block;margin-bottom:.25rem">Notes (optional)</label>
+        <textarea id="rel-notes" rows="2" placeholder="A few words about the release…" style="width:100%;padding:.55rem .9rem;border:1px solid #ddd;border-radius:6px;font-size:.85rem;resize:vertical;font-family:inherit"></textarea>
+      </div>
+      <div class="card-actions">
+        <button class="btn" id="rel-send" onclick="announceRelease()">Email All Subscribers</button>
+        <span id="rel-status" style="font-size:.8rem"></span>
+      </div>
+    </div>
+
+    <h2>Messages</h2>
+    <div class="search-bar">
+      <input type="text" id="msg-search" placeholder="Search messages by name, email, or content…"/>
+    </div>
+    <div id="messages"></div>
+    <div class="pagination" id="msg-pagination"></div>
+
+    <h2>
+      Subscribers
+      <span>
+        <button class="btn btn-sm btn-ghost" onclick="emailAll()">Email All</button>
+        <button class="btn btn-sm btn-ghost" onclick="exportCSV()">Export CSV</button>
+      </span>
+    </h2>
+    <div class="search-bar">
+      <input type="text" id="sub-search" placeholder="Search subscribers…"/>
+    </div>
+    <div id="subscribers"></div>
+
+    <h2>Newsletter</h2>
+    <div class="card" id="newsletter-card">
+      <div style="margin-bottom:.75rem">
+        <label style="font-size:.7rem;color:#888;text-transform:uppercase;letter-spacing:.1em;display:block;margin-bottom:.25rem">Subject</label>
+        <input type="text" id="nl-subject" placeholder="New release: drain (Demo)" style="width:100%;padding:.6rem .9rem;border:1px solid #ddd;border-radius:6px;font-size:.85rem"/>
+      </div>
+      <div style="margin-bottom:.75rem">
+        <label style="font-size:.7rem;color:#888;text-transform:uppercase;letter-spacing:.1em;display:block;margin-bottom:.25rem">Body</label>
+        <textarea id="nl-body" rows="6" placeholder="Hey — we just dropped a new single..." style="width:100%;padding:.6rem .9rem;border:1px solid #ddd;border-radius:6px;font-size:.85rem;resize:vertical;font-family:inherit"></textarea>
+      </div>
+      <div class="card-actions">
+        <button class="btn" id="nl-send" onclick="sendNewsletter()">Send to All Subscribers</button>
+        <span id="nl-status" style="font-size:.8rem;margin-left:.5rem"></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+var KEY = '';
+window.addEventListener('beforeunload', function() { KEY = ''; });
+var msgPage = 0;
+var msgLimit = 20;
+var msgTotal = 0;
+var msgSearch = '';
+var subSearch = '';
+var _msgSearchTimer = null;
+var _subSearchTimer = null;
+
+function doLogin() {
+  KEY = document.getElementById('key-input').value.trim();
+  if (!KEY) return;
+  api('/api/admin/messages?limit=1').then(function() {
+    document.getElementById('login-form').style.display = 'none';
+    document.getElementById('content').style.display = 'block';
+    loadAll();
+  }).catch(function() {
+    var err = document.getElementById('login-error');
+    err.textContent = 'Invalid key.';
+    err.style.display = 'block';
+  });
+}
+
+function doLogout() {
+  KEY = '';
+  document.getElementById('content').style.display = 'none';
+  document.getElementById('login-form').style.display = '';
+  document.getElementById('key-input').value = '';
+  document.getElementById('login-error').style.display = 'none';
+  document.getElementById('key-input').focus();
+}
+
+document.getElementById('key-input').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') doLogin();
+});
+
+document.getElementById('msg-search').addEventListener('input', function() {
+  clearTimeout(_msgSearchTimer);
+  var val = this.value.trim();
+  _msgSearchTimer = setTimeout(function() {
+    msgSearch = val;
+    msgPage = 0;
+    loadMessages();
+  }, 300);
+});
+
+document.getElementById('sub-search').addEventListener('input', function() {
+  clearTimeout(_subSearchTimer);
+  var val = this.value.trim();
+  _subSearchTimer = setTimeout(function() {
+    subSearch = val;
+    loadSubscribers();
+  }, 300);
+});
+
+function api(url, opts) {
+  opts = opts || {};
+  opts.headers = opts.headers || {};
+  opts.headers['X-Admin-Key'] = KEY;
+  if (opts.body) opts.headers['Content-Type'] = 'application/json';
+  return fetch(url, opts).then(function(r) {
+    if (!r.ok) throw new Error(r.status);
+    return r.json();
+  });
+}
+
+function loadAll() {
+  loadMessages();
+  loadSubscribers();
+  loadShows();
+}
+
+function loadShows() {
+  api('/api/admin/shows').then(function(data) {
+    var el = document.getElementById('shows-admin-list');
+    if (!data.shows || !data.shows.length) {
+      el.innerHTML = '<div class="empty">No shows yet.</div>';
+      return;
+    }
+    el.innerHTML = data.shows.map(function(s) {
+      return '<div class="sub-row">' +
+        '<span><strong>' + esc(s.date) + '</strong> — ' + esc(s.venue) + ', ' + esc(s.city) +
+        (s.ticket_url ? ' · <a href="' + esc(s.ticket_url) + '" target="_blank" rel="noopener">tickets</a>' : '') +
+        '</span>' +
+        '<button class="btn btn-sm btn-danger" onclick="deleteShow(' + s.id + ')">Delete</button>' +
+      '</div>';
+    }).join('');
+  });
+}
+
+function addShow() {
+  var date = document.getElementById('show-date').value;
+  var venue = document.getElementById('show-venue').value.trim();
+  var city = document.getElementById('show-city').value.trim();
+  var tickets = document.getElementById('show-tickets').value.trim();
+  var details = document.getElementById('show-details').value.trim();
+  var notify = document.getElementById('show-notify').checked;
+  var status = document.getElementById('show-status');
+  var btn = document.getElementById('show-add');
+  if (!date || !venue || !city) {
+    status.style.color = '#d92510';
+    status.textContent = 'Date, venue, and city required.';
+    return;
+  }
+  if (notify && !confirm('Add this show AND email every subscriber about it?')) return;
+  btn.disabled = true;
+  status.textContent = notify ? 'Saving + emailing…' : 'Saving…';
+  status.style.color = '#666';
+  api('/api/admin/shows', {
+    method: 'POST',
+    body: JSON.stringify({ date: date, venue: venue, city: city, ticket_url: tickets, details: details, notify: notify })
+  }).then(function(data) {
+    status.style.color = '#084C61';
+    status.textContent = data.notified
+      ? 'Show added. Emailed ' + data.sent + ' subscriber' + (data.sent !== 1 ? 's' : '') + '.'
+      : 'Show added.' + (data.error ? ' ' + data.error : '');
+    ['show-date','show-venue','show-city','show-tickets','show-details'].forEach(function(id) {
+      document.getElementById(id).value = '';
+    });
+    loadShows();
+  }).catch(function() {
+    status.style.color = '#d92510';
+    status.textContent = 'Failed. Check the fields and server logs.';
+  }).finally(function() { btn.disabled = false; });
+}
+
+function deleteShow(id) {
+  if (!confirm('Delete this show? (No email is sent.)')) return;
+  api('/api/admin/shows/' + id, { method: 'DELETE' }).then(loadShows);
+}
+
+function announceRelease() {
+  var name = document.getElementById('rel-name').value.trim();
+  var type = document.getElementById('rel-type').value;
+  var link = document.getElementById('rel-link').value.trim();
+  var notes = document.getElementById('rel-notes').value.trim();
+  var status = document.getElementById('rel-status');
+  var btn = document.getElementById('rel-send');
+  if (!name) {
+    status.style.color = '#d92510';
+    status.textContent = 'Release name required.';
+    return;
+  }
+  if (!confirm('Email every subscriber about "' + name + '"?')) return;
+  btn.disabled = true;
+  status.style.color = '#666';
+  status.textContent = 'Sending…';
+  api('/api/admin/announce-release', {
+    method: 'POST',
+    body: JSON.stringify({ name: name, type: type, link: link, notes: notes })
+  }).then(function(data) {
+    status.style.color = '#084C61';
+    status.textContent = 'Sent to ' + data.sent + ' subscriber' + (data.sent !== 1 ? 's' : '') + '.';
+    ['rel-name','rel-link','rel-notes'].forEach(function(id) { document.getElementById(id).value = ''; });
+  }).catch(function() {
+    status.style.color = '#d92510';
+    status.textContent = 'Failed. Check server logs.';
+  }).finally(function() { btn.disabled = false; });
+}
+
+function loadMessages() {
+  var url = '/api/admin/messages?limit=' + msgLimit + '&offset=' + (msgPage * msgLimit);
+  if (msgSearch) url += '&search=' + encodeURIComponent(msgSearch);
+  api(url).then(function(data) {
+    msgTotal = data.total;
+    renderStats(data);
+    renderMessages(data);
+    renderPagination();
+  });
+}
+
+function loadSubscribers() {
+  var url = '/api/admin/subscribers';
+  if (subSearch) url += '?search=' + encodeURIComponent(subSearch);
+  api(url).then(function(data) {
+    renderSubStats(data);
+    renderSubscribers(data);
+  });
+}
+
+var _cachedSubCount = 0;
+function renderStats(msgData) {
+  document.getElementById('stats').innerHTML =
+    '<div class="stat"><div class="stat-num">' + (msgData.unread || 0) + '</div><div class="stat-label">Unread</div></div>' +
+    '<div class="stat"><div class="stat-num">' + (msgData.total || 0) + '</div><div class="stat-label">Total Messages</div></div>' +
+    '<div class="stat"><div class="stat-num">' + _cachedSubCount + '</div><div class="stat-label">Subscribers</div></div>';
+}
+
+function renderSubStats(subData) {
+  _cachedSubCount = subData.count || 0;
+  var statEls = document.querySelectorAll('.stat');
+  if (statEls.length >= 3) {
+    statEls[2].querySelector('.stat-num').textContent = _cachedSubCount;
+  }
+}
+
+function renderMessages(data) {
+  var el = document.getElementById('messages');
+  if (!data.messages || !data.messages.length) {
+    el.innerHTML = '<div class="empty">' + (msgSearch ? 'No messages match your search.' : 'No messages yet.') + '</div>';
+    return;
+  }
+  el.innerHTML = data.messages.map(function(m) {
+    return '<div class="card' + (m.read ? '' : ' unread') + '" id="msg-' + m.id + '">' +
+      '<div class="card-header">' +
+        '<span><span class="card-name">' + esc(m.name) + '</span> <span class="card-email">&lt;' + esc(m.email) + '&gt;</span></span>' +
+        '<span class="card-date">' + m.created_at + '</span>' +
+      '</div>' +
+      '<div class="card-body">' + esc(m.message) + '</div>' +
+      '<div class="card-actions" id="actions-' + m.id + '">' +
+        (m.read ? '' : '<button class="btn btn-sm" onclick="markRead(' + m.id + ')">Mark Read</button>') +
+        '<button class="btn btn-sm btn-danger" onclick="deleteMsg(' + m.id + ')">Delete</button>' +
+        '<a class="btn btn-sm btn-ghost" href="mailto:' + esc(m.email) + '?subject=Re: Website Contact">Reply</a>' +
+      '</div>' +
+    '</div>';
+  }).join('');
+}
+
+function renderPagination() {
+  var el = document.getElementById('msg-pagination');
+  var totalPages = Math.max(1, Math.ceil(msgTotal / msgLimit));
+  if (totalPages <= 1) { el.innerHTML = ''; return; }
+  el.innerHTML =
+    '<button class="btn btn-sm btn-ghost" onclick="prevPage()" ' + (msgPage <= 0 ? 'disabled' : '') + '>&larr; Prev</button>' +
+    '<span class="page-info">Page ' + (msgPage + 1) + ' of ' + totalPages + '</span>' +
+    '<button class="btn btn-sm btn-ghost" onclick="nextPage()" ' + (msgPage >= totalPages - 1 ? 'disabled' : '') + '>Next &rarr;</button>';
+}
+
+function prevPage() { if (msgPage > 0) { msgPage--; loadMessages(); } }
+function nextPage() {
+  var totalPages = Math.ceil(msgTotal / msgLimit);
+  if (msgPage < totalPages - 1) { msgPage++; loadMessages(); }
+}
+
+function renderSubscribers(data) {
+  var el = document.getElementById('subscribers');
+  if (!data.subscribers || !data.subscribers.length) {
+    el.innerHTML = '<div class="empty">' + (subSearch ? 'No subscribers match your search.' : 'No subscribers yet.') + '</div>';
+    return;
+  }
+  el.innerHTML = data.subscribers.map(function(s) {
+    return '<div class="sub-row">' +
+      '<span>' + esc(s.email) + (s.name ? ' — ' + esc(s.name) : '') + '</span>' +
+      '<span class="card-date">' + s.subscribed_at + '</span>' +
+    '</div>';
+  }).join('');
+}
+
+function markRead(id) {
+  api('/api/admin/messages/' + id + '/read', { method: 'POST' }).then(loadMessages);
+}
+
+function deleteMsg(id) {
+  var actions = document.getElementById('actions-' + id);
+  if (!actions) return;
+  actions.innerHTML =
+    '<span class="confirm-text">Delete this message?</span>' +
+    '<button class="btn btn-sm btn-danger" onclick="confirmDelete(' + id + ')">Yes, Delete</button>' +
+    '<button class="btn btn-sm btn-ghost" onclick="loadMessages()">Cancel</button>';
+}
+
+function confirmDelete(id) {
+  api('/api/admin/messages/' + id, { method: 'DELETE' }).then(loadMessages);
+}
+
+function emailAll() {
+  api('/api/admin/subscribers').then(function(data) {
+    if (!data.subscribers || !data.subscribers.length) return;
+    var emails = data.subscribers.map(function(s) { return s.email; });
+    window.location.href = 'mailto:stubblefieldashton@gmail.com?bcc=' + encodeURIComponent(emails.join(','));
+  });
+}
+
+function csvSafe(s) {
+  if (!s) return '""';
+  if (/^[=+\-@\t\r]/.test(s)) s = "'" + s;
+  return '"' + s.replace(/"/g, '""') + '"';
+}
+function exportCSV() {
+  api('/api/admin/subscribers').then(function(data) {
+    var csv = 'email,name,subscribed_at\n';
+    data.subscribers.forEach(function(s) {
+      csv += csvSafe(s.email) + ',' + csvSafe(s.name || '') + ',' + csvSafe(s.subscribed_at) + '\n';
+    });
+    var blob = new Blob([csv], { type: 'text/csv' });
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'subscribers-' + new Date().toISOString().slice(0, 10) + '.csv';
+    a.click();
+  });
+}
+
+function esc(s) {
+  if (!s) return '';
+  var d = document.createElement('div');
+  d.textContent = s;
+  return d.innerHTML;
+}
+
+function sendNewsletter() {
+  var subject = document.getElementById('nl-subject').value.trim();
+  var body = document.getElementById('nl-body').value.trim();
+  var status = document.getElementById('nl-status');
+  var btn = document.getElementById('nl-send');
+  if (!subject || !body) { status.textContent = 'Subject and body required.'; status.style.color = '#d92510'; return; }
+  if (!confirm('Send this newsletter to ALL subscribers?')) return;
+  btn.disabled = true;
+  btn.textContent = 'Sending…';
+  status.textContent = '';
+  api('/api/admin/newsletter', {
+    method: 'POST',
+    body: JSON.stringify({ subject: subject, body: body })
+  }).then(function(data) {
+    status.style.color = '#084C61';
+    status.textContent = 'Sent to ' + data.sent + ' subscriber' + (data.sent !== 1 ? 's' : '') + '.';
+    document.getElementById('nl-subject').value = '';
+    document.getElementById('nl-body').value = '';
+  }).catch(function(err) {
+    status.style.color = '#d92510';
+    status.textContent = 'Failed to send. Check server logs.';
+  }).finally(function() {
+    btn.disabled = false;
+    btn.textContent = 'Send to All Subscribers';
+  });
+}
+</script>
+</body>
+</html>
