@@ -395,7 +395,8 @@ img.brand-logo{filter:none!important}
    black wordmark invisible on the darkened photo */
 .hero-brand h1{filter:invert(.92) sepia(.28) saturate(.9) brightness(1.04)}
 .hero-name-img{
-  width:min(78vw,620px);height:auto;margin-inline:auto;
+  /* narrow enough to sit in the clear channel between the flanking heads */
+  width:min(64vw,500px);height:auto;margin-inline:auto;
   opacity:0;animation:rise var(--dur-long) var(--ease-out) .2s forwards;
 }
 .hero-tagline{
