@@ -364,6 +364,9 @@ img.brand-logo{filter:none!important}
   /* y=0 keeps the four faces in the upper-center band, clear of the
      bottom-anchored content */
   background-size:cover;background-position:30% 12%;
+  /* the group stands left-of-center in the source photo; oversizing and
+     nudging right puts the four heads on the horizontal center line */
+  transform:scale(1.15) translateX(7%);
   filter:grayscale(1) sepia(.55) hue-rotate(-10deg) saturate(1.35) brightness(.52) contrast(1.05);
 }
 .hero-glow{
