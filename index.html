@@ -343,8 +343,15 @@ html{scrollbar-width:thin;scrollbar-color:rgba(233,223,208,.15) transparent}
   display:flex;flex-direction:column;align-items:center;justify-content:center;
   text-align:center;padding:var(--s3) var(--s1);overflow:hidden;
 }
+/* Band photo as the room itself — monotone autumn, dissolving into dark */
+.hero-photo{
+  position:absolute;inset:0;z-index:0;
+  background-image:url("Images/profile.jpg");
+  background-size:cover;background-position:center 30%;
+  filter:grayscale(1) sepia(.55) hue-rotate(-10deg) saturate(1.35) brightness(.4) contrast(1.05);
+}
 .hero-glow{
-  position:absolute;inset:-20%;z-index:0;
+  position:absolute;inset:-20%;z-index:0;opacity:.45;
   background-image:url("Images/Releases/drain demo.png");
   background-size:cover;background-position:center;
   filter:blur(90px) saturate(1.3) brightness(.42);
@@ -358,6 +365,10 @@ html{scrollbar-width:thin;scrollbar-color:rgba(233,223,208,.15) transparent}
 }
 .hero-content{position:relative;z-index:4;display:flex;flex-direction:column;align-items:center;gap:var(--s1)}
 .hero-brand{text-decoration:none}
+/* invert lives on the h1, not the img — the img's entrance animation
+   animates `filter` and would otherwise cancel the invert, leaving the
+   black wordmark invisible on the darkened photo */
+.hero-brand h1{filter:invert(.92) sepia(.28) saturate(.9) brightness(1.04)}
 .hero-name-img{
   width:min(78vw,620px);height:auto;margin-inline:auto;
   opacity:0;animation:rise var(--dur-long) var(--ease-out) .2s forwards;
@@ -856,7 +867,6 @@ body.player-active{padding-bottom:68px}
   .grain,.color-wash{animation:none!important}
   .leaves-layer{display:none!important}
   .hero-name-img,.hero-tagline,.hero-featured,.reveal{opacity:1!important;transform:none!important;filter:none!important}
-  .hero-name-img{filter:invert(.92) sepia(.28) saturate(.9) brightness(1.04)!important}
   .hero-badge{animation:none!important}
   .hero-scroll{animation:none!important}
 }
@@ -912,11 +922,12 @@ body.player-active{padding-bottom:68px}
 
 <!-- ══ HERO — the record is the light source ══════════════ -->
 <header class="hero" id="latest">
+  <div class="hero-photo" aria-hidden="true"></div>
   <div class="hero-glow" aria-hidden="true"></div>
   <div class="hero-vignette" aria-hidden="true"></div>
   <div class="hero-content">
     <a href="#" class="hero-brand" aria-label="Autumn Child — back to top">
-      <h1><img src="Images/Name.png" alt="Autumn Child" class="hero-name-img ink" fetchpriority="high"/></h1>
+      <h1><img src="Images/Name.png" alt="Autumn Child" class="hero-name-img" fetchpriority="high"/></h1>
     </a>
     <p class="hero-tagline">shoegaze &middot; dream pop &middot; Oklahoma City</p>
     <div class="hero-featured" id="hero-featured">
