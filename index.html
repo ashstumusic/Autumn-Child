@@ -278,10 +278,14 @@ html{scrollbar-width:thin;scrollbar-color:rgba(233,223,208,.15) transparent}
 .nav-platform:hover,.share-btn:hover{border-color:var(--border-hover);background:var(--bg-elevated)}
 .nav-platform img,.share-btn img{width:15px;height:15px;object-fit:contain}
 .nav-links .nav-platform{padding:0;align-self:center;margin-right:.35rem}
-/* one autumn tint for every UI icon — no icon keeps its native color */
-.nav-platform img,.share-btn img,.btn img{filter:grayscale(1) sepia(.9) saturate(1.05) hue-rotate(-10deg) brightness(1.1)}
-/* icons sitting on filled (orange) buttons go near-black like their label text */
+/* autumn tint for UI icons — brightened so toolbar icons stay clearly visible */
+.nav-platform img,.btn img{filter:grayscale(1) sepia(.9) saturate(1.05) hue-rotate(-10deg) brightness(1.55)}
+/* share glyph is black in the source PNG — invert first so it reads on dark */
+.share-btn img{filter:invert(.9) sepia(.35) hue-rotate(-10deg) saturate(1.1) brightness(1.05)}
+/* icons on filled buttons go near-black like their label text */
 .btn-fill img,.drawer-bandcamp img{filter:grayscale(1) brightness(.15)}
+/* Bandcamp and Patreon logos keep their official colors — brand exception */
+img.brand-logo{filter:none!important}
 .nav-toggle{
   display:none;margin-left:auto;
   font-family:var(--sans);font-size:.72rem;font-weight:600;
@@ -889,7 +893,7 @@ body.player-active{padding-bottom:68px}
   </a>
   <ul class="nav-links" role="list">
     <li><a href="https://autumnchildokc.bandcamp.com" target="_blank" rel="noopener" class="nav-platform" aria-label="Bandcamp">
-      <img src="Icons/Bandcamp.png" alt="" aria-hidden="true"/>
+      <img src="Icons/Bandcamp.png" alt="" aria-hidden="true" class="brand-logo"/>
     </a></li>
     <li><a href="#epk">Press Kit</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -907,7 +911,7 @@ body.player-active{padding-bottom:68px}
 </nav>
 <nav class="nav-drawer" id="nav-drawer" aria-label="Mobile menu" aria-hidden="true">
   <a href="https://autumnchildokc.bandcamp.com" target="_blank" rel="noopener" class="drawer-bandcamp">
-    <img src="Icons/Bandcamp.png" alt="" aria-hidden="true"/> Bandcamp
+    <img src="Icons/Bandcamp.png" alt="" aria-hidden="true" class="brand-logo"/> Bandcamp
   </a>
   <a href="#epk">Press Kit</a>
   <a href="#contact">Contact</a>
@@ -943,7 +947,7 @@ body.player-active{padding-bottom:68px}
             <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="6,3 20,12 6,21"/></svg>
           </button>
           <a href="https://autumnchildokc.bandcamp.com/track/drain-demo" target="_blank" rel="noopener" class="btn" aria-label="Listen to drain (Demo) on Bandcamp (opens in a new tab)">
-            <img src="Icons/Bandcamp.png" alt="" aria-hidden="true"/> Bandcamp
+            <img src="Icons/Bandcamp.png" alt="" aria-hidden="true" class="brand-logo"/> Bandcamp
           </a>
         </div>
       </div>
@@ -1019,7 +1023,7 @@ body.player-active{padding-bottom:68px}
           </tbody>
         </table>
         <div class="plate-btns">
-          <a href="https://autumnchildokc.bandcamp.com/track/drain-demo" target="_blank" rel="noopener" class="btn" aria-label="Listen to drain (Demo) on Bandcamp (opens in a new tab)"><img src="Icons/Bandcamp.png" alt="" aria-hidden="true"/> Bandcamp</a>
+          <a href="https://autumnchildokc.bandcamp.com/track/drain-demo" target="_blank" rel="noopener" class="btn" aria-label="Listen to drain (Demo) on Bandcamp (opens in a new tab)"><img src="Icons/Bandcamp.png" alt="" aria-hidden="true" class="brand-logo"/> Bandcamp</a>
         </div>
         <details class="release-lyrics">
           <summary>Lyrics</summary>
@@ -1082,7 +1086,7 @@ between the lies you sold to me?</p>
     <div class="signal-copy">
       <p>If our music means something to you, consider becoming a patron. It helps us keep making it.</p>
       <a href="https://www.patreon.com/autumnchild" target="_blank" rel="noopener" class="btn btn-fill" style="margin-top:var(--s0)">
-        <img src="Icons/Patreon.png" alt="" aria-hidden="true"/>
+        <img src="Icons/Patreon.png" alt="" aria-hidden="true" class="brand-logo"/>
         Become a Patron
       </a>
     </div>
