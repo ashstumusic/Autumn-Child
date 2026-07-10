@@ -105,9 +105,9 @@
    amber is the single action color: every glowing thing is
    playable or pressable, so the user never has to *think*
    about what is interactive (pre-attentive color coding).
-   A trace of dusk violet in gradients keeps the dark from
-   going flat and evokes the "space between waking and
-   dreaming" in the band's own bio.
+   Strictly monotone: one burnt-orange hue family over warm
+   near-black — every icon, glow, and gradient is re-tinted
+   into that single autumn tone.
    ═══════════════════════════════════════════════════════════ */
 :root {
   --bg:          #0d0a08;
@@ -124,7 +124,6 @@
   --accent-text: #e0a05c;  /* light autumn amber for text          */
   --accent-glow: rgba(201,123,45,.16);
   --accent-soft: rgba(201,123,45,.06);
-  --dusk:        #7b5f92;  /* violet — atmosphere only, never UI */
 
   --border:        rgba(233,223,208,.08);
   --border-hover:  rgba(233,223,208,.16);
@@ -230,7 +229,7 @@ html{scrollbar-width:thin;scrollbar-color:rgba(233,223,208,.15) transparent}
 .color-wash{
   position:fixed;inset:0;pointer-events:none;z-index:1;opacity:.5;
   background:
-    radial-gradient(ellipse 80% 60% at 15% 0%, rgba(123,95,146,.10), transparent 60%),
+    radial-gradient(ellipse 80% 60% at 15% 0%, rgba(176,92,34,.08), transparent 60%),
     radial-gradient(ellipse 70% 55% at 85% 100%, rgba(176,92,34,.10), transparent 60%);
   animation:wash 24s ease-in-out infinite alternate;
 }
@@ -279,7 +278,10 @@ html{scrollbar-width:thin;scrollbar-color:rgba(233,223,208,.15) transparent}
 .nav-platform:hover,.share-btn:hover{border-color:var(--border-hover);background:var(--bg-elevated)}
 .nav-platform img,.share-btn img{width:15px;height:15px;object-fit:contain}
 .nav-links .nav-platform{padding:0;align-self:center;margin-right:.35rem}
-.share-btn img{filter:invert(.85) sepia(.2)}
+/* one autumn tint for every UI icon — no icon keeps its native color */
+.nav-platform img,.share-btn img,.btn img{filter:grayscale(1) sepia(1) saturate(1.6) hue-rotate(-12deg) brightness(1.15)}
+/* icons sitting on filled (orange) buttons go near-black like their label text */
+.btn-fill img,.drawer-bandcamp img{filter:grayscale(1) brightness(.15)}
 .nav-toggle{
   display:none;margin-left:auto;
   font-family:var(--sans);font-size:.72rem;font-weight:600;
@@ -550,7 +552,7 @@ html{scrollbar-width:thin;scrollbar-color:rgba(233,223,208,.15) transparent}
 .band-photo::after{
   content:"";position:absolute;inset:0;
   background:linear-gradient(180deg,transparent 55%,var(--bg) 100%),
-             radial-gradient(circle at 80% 20%,rgba(123,95,146,.14),transparent 60%);
+             radial-gradient(circle at 80% 20%,rgba(176,92,34,.12),transparent 60%);
   pointer-events:none;
 }
 .band-photo figcaption{
