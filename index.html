@@ -278,6 +278,7 @@ html{scrollbar-width:thin;scrollbar-color:rgba(233,223,208,.15) transparent}
 }
 .nav-platform:hover,.share-btn:hover{border-color:var(--border-hover);background:var(--bg-elevated)}
 .nav-platform img,.share-btn img{width:15px;height:15px;object-fit:contain}
+.nav-links .nav-platform{padding:0;align-self:center;margin-right:.35rem}
 .share-btn img{filter:invert(.85) sepia(.2)}
 .nav-toggle{
   display:none;margin-left:auto;
@@ -875,6 +876,9 @@ body.player-active{padding-bottom:68px}
     <img src="Images/Name.png" alt="autumn child" class="nav-logo-name ink" decoding="async"/>
   </a>
   <ul class="nav-links" role="list">
+    <li><a href="https://autumnchildokc.bandcamp.com" target="_blank" rel="noopener" class="nav-platform" aria-label="Bandcamp">
+      <img src="Icons/Bandcamp.png" alt="" aria-hidden="true"/>
+    </a></li>
     <li><a href="#epk">Press Kit</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="#music">Music</a></li>
@@ -886,9 +890,6 @@ body.player-active{padding-bottom:68px}
     <button class="share-btn" id="share-btn" aria-label="Share">
       <img src="Icons/Share.png" alt="" aria-hidden="true"/>
     </button>
-    <a href="https://autumnchildokc.bandcamp.com" target="_blank" rel="noopener" class="nav-platform" aria-label="Bandcamp">
-      <img src="Icons/Bandcamp.png" alt="" aria-hidden="true"/>
-    </a>
   </div>
   <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-drawer">Menu</button>
 </nav>
