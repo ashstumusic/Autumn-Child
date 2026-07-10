@@ -119,16 +119,16 @@
   --text-dim: #7c7060;
   --heading:  #f3ebdc;
 
-  --accent:      #d6d6d6;  /* silver — the only action color  */
-  --accent-deep: #9a9a9a;  /* grey — pressed / hover states   */
-  --accent-text: #e4e4e4;  /* light grey for text contrast    */
-  --accent-glow: rgba(214,214,214,.14);
-  --accent-soft: rgba(214,214,214,.06);
+  --accent:      #c97b2d;  /* burnt orange — the only action color */
+  --accent-deep: #8f5520;  /* deep rust — pressed / hover states   */
+  --accent-text: #e0a05c;  /* light autumn amber for text          */
+  --accent-glow: rgba(201,123,45,.16);
+  --accent-soft: rgba(201,123,45,.06);
   --dusk:        #7b5f92;  /* violet — atmosphere only, never UI */
 
   --border:        rgba(233,223,208,.08);
   --border-hover:  rgba(233,223,208,.16);
-  --border-active: rgba(214,214,214,.45);
+  --border-active: rgba(201,123,45,.45);
 
   --blur-heavy: blur(40px) saturate(1.25);
   --blur-mid:   blur(22px) saturate(1.15);
@@ -185,7 +185,7 @@ body{
 }
 img{display:block;max-width:100%}
 a{color:inherit}
-::selection{background:rgba(214,214,214,.3);color:#ffffff}
+::selection{background:rgba(201,123,45,.3);color:#fff6ea}
 :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
 html{scrollbar-width:thin;scrollbar-color:rgba(233,223,208,.15) transparent}
 ::-webkit-scrollbar{width:4px}
@@ -231,13 +231,14 @@ html{scrollbar-width:thin;scrollbar-color:rgba(233,223,208,.15) transparent}
   position:fixed;inset:0;pointer-events:none;z-index:1;opacity:.5;
   background:
     radial-gradient(ellipse 80% 60% at 15% 0%, rgba(123,95,146,.10), transparent 60%),
-    radial-gradient(ellipse 70% 55% at 85% 100%, rgba(200,200,200,.05), transparent 60%);
+    radial-gradient(ellipse 70% 55% at 85% 100%, rgba(176,92,34,.10), transparent 60%);
   animation:wash 24s ease-in-out infinite alternate;
 }
 @keyframes wash{from{opacity:.35}to{opacity:.65}}
 
 .leaves-layer{position:fixed;inset:0;pointer-events:none;z-index:3;overflow:hidden}
-.leaf{position:absolute;top:0;left:0;will-change:transform;filter:grayscale(1) brightness(.85) drop-shadow(0 0 14px rgba(220,220,220,.1))}
+/* monotone autumn: strip native color, re-tint every leaf to one burnt-orange tone */
+.leaf{position:absolute;top:0;left:0;will-change:transform;filter:grayscale(1) sepia(1) saturate(1.7) hue-rotate(-12deg) brightness(.82) drop-shadow(0 0 14px rgba(201,123,45,.12))}
 
 /* ═══════════════════════════════════════════════════════════
    NAV — disappears into the hero, returns as dark glass.

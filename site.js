@@ -533,10 +533,10 @@ window.addEventListener('load', function() {
   var layer = document.getElementById('leaves-layer');
   if (!layer) return;
 
-  var TOTAL_IMAGES = 46;
+  // Curated set — only these files exist in Images/Leaves/
+  var LEAF_IDS = [1, 2, 13, 15, 17, 18, 20, 22, 23, 25, 26, 27, 28, 29, 30, 31, 37, 38, 39, 41, 46];
   var LEAF_COUNT = window.innerWidth < 768 ? 7 : 12;
-  var leafSrcs = [];
-  for (var i = 1; i <= TOTAL_IMAGES; i++) leafSrcs.push('Images/Leaves/Leaf ' + i + '.png');
+  var leafSrcs = LEAF_IDS.map(function(n) { return 'Images/Leaves/Leaf ' + n + '.png'; });
 
   var leaves = [];
   var raf;
