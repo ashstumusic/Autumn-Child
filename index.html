@@ -277,7 +277,16 @@ html{scrollbar-width:thin;scrollbar-color:rgba(233,223,208,.15) transparent}
 }
 .nav-platform:hover,.share-btn:hover{border-color:var(--border-hover);background:var(--bg-elevated)}
 .nav-platform img,.share-btn img{width:15px;height:15px;object-fit:contain}
-.nav-links .nav-platform{padding:0;align-self:center;margin-right:.35rem}
+/* labeled brand pills in the desktop toolbar */
+.nav-links .nav-brand-btn{
+  display:inline-flex;align-items:center;gap:.45rem;
+  padding:.45rem .85rem;margin-right:.25rem;
+  border:1px solid var(--border);border-radius:99px;
+  color:var(--text-mid);
+  transition:color var(--dur-short) var(--ease),border-color var(--dur-short) var(--ease),background var(--dur-short) var(--ease);
+}
+.nav-links .nav-brand-btn:hover{color:var(--heading);border-color:var(--border-hover);background:var(--bg-elevated)}
+.nav-brand-btn img{width:15px;height:15px;object-fit:contain}
 /* autumn tint for UI icons — brightened so toolbar icons stay clearly visible */
 .nav-platform img,.btn img{filter:grayscale(1) sepia(.9) saturate(1.05) hue-rotate(-10deg) brightness(1.55)}
 /* share glyph is black in the source PNG — invert first so it reads on dark */
@@ -313,9 +322,10 @@ img.brand-logo{filter:none!important}
   padding:.35rem 1.5rem;transition:color var(--dur-short) var(--ease);
 }
 .nav-drawer a:hover{color:var(--accent-text)}
+.drawer-brands{display:flex;flex-wrap:wrap;justify-content:center;gap:.6rem;margin-bottom:var(--s1)}
 .drawer-bandcamp{
   display:inline-flex;align-items:center;justify-content:center;gap:.6rem;
-  width:auto;margin-bottom:var(--s1);
+  width:auto;
   padding:.85rem 1.5rem;border-radius:99px;
   background:var(--accent);color:#141414!important;
   font-family:var(--sans)!important;font-style:normal!important;
@@ -892,8 +902,11 @@ body.player-active{padding-bottom:68px}
     <img src="Images/Name.png" alt="autumn child" class="nav-logo-name ink" decoding="async"/>
   </a>
   <ul class="nav-links" role="list">
-    <li><a href="https://autumnchildokc.bandcamp.com" target="_blank" rel="noopener" class="nav-platform" aria-label="Bandcamp">
-      <img src="Icons/Bandcamp.png" alt="" aria-hidden="true" class="brand-logo"/>
+    <li><a href="https://autumnchildokc.bandcamp.com" target="_blank" rel="noopener" class="nav-brand-btn" aria-label="Autumn Child on Bandcamp (opens in a new tab)">
+      <img src="Icons/Bandcamp.png" alt="" aria-hidden="true" class="brand-logo"/><span>Bandcamp</span>
+    </a></li>
+    <li><a href="https://www.patreon.com/autumnchild" target="_blank" rel="noopener" class="nav-brand-btn" aria-label="Autumn Child on Patreon (opens in a new tab)">
+      <img src="Icons/Patreon.png" alt="" aria-hidden="true" class="brand-logo"/><span>Patreon</span>
     </a></li>
     <li><a href="#epk">Press Kit</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -910,9 +923,14 @@ body.player-active{padding-bottom:68px}
   <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-drawer">Menu</button>
 </nav>
 <nav class="nav-drawer" id="nav-drawer" aria-label="Mobile menu" aria-hidden="true">
-  <a href="https://autumnchildokc.bandcamp.com" target="_blank" rel="noopener" class="drawer-bandcamp">
-    <img src="Icons/Bandcamp.png" alt="" aria-hidden="true" class="brand-logo"/> Bandcamp
-  </a>
+  <div class="drawer-brands">
+    <a href="https://autumnchildokc.bandcamp.com" target="_blank" rel="noopener" class="drawer-bandcamp">
+      <img src="Icons/Bandcamp.png" alt="" aria-hidden="true" class="brand-logo"/> Bandcamp
+    </a>
+    <a href="https://www.patreon.com/autumnchild" target="_blank" rel="noopener" class="drawer-bandcamp">
+      <img src="Icons/Patreon.png" alt="" aria-hidden="true" class="brand-logo"/> Patreon
+    </a>
+  </div>
   <a href="#epk">Press Kit</a>
   <a href="#contact">Contact</a>
   <a href="#music">Music</a>
