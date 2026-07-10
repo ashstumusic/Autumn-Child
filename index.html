@@ -38,7 +38,8 @@
   },
   "image": "https://autumnchild.band/Images/profile.jpg",
   "sameAs": [
-    "https://autumnchildokc.bandcamp.com"
+    "https://autumnchildokc.bandcamp.com",
+    "https://www.patreon.com/autumnchild"
   ],
   "album": {
     "@type": "MusicAlbum",
@@ -55,7 +56,7 @@
   }
 }
 </script>
-<title>Autumn Child — Shoegaze &amp; Dream Pop from Oklahoma City, OK</title>
+<title>Autumn Child Music</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
@@ -85,16 +86,16 @@
   --text-dim: #7c7060;
   --heading:  #f3ebdc;
 
-  --accent:      #e09a3e;  /* ember — the only action color   */
-  --accent-deep: #b05c22;  /* rust — pressed / hover states    */
-  --accent-text: #eeb267;  /* amber tuned for text contrast    */
-  --accent-glow: rgba(224,154,62,.16);
-  --accent-soft: rgba(224,154,62,.06);
+  --accent:      #d6d6d6;  /* silver — the only action color  */
+  --accent-deep: #9a9a9a;  /* grey — pressed / hover states   */
+  --accent-text: #e4e4e4;  /* light grey for text contrast    */
+  --accent-glow: rgba(214,214,214,.14);
+  --accent-soft: rgba(214,214,214,.06);
   --dusk:        #7b5f92;  /* violet — atmosphere only, never UI */
 
   --border:        rgba(233,223,208,.08);
   --border-hover:  rgba(233,223,208,.16);
-  --border-active: rgba(224,154,62,.45);
+  --border-active: rgba(214,214,214,.45);
 
   --blur-heavy: blur(40px) saturate(1.25);
   --blur-mid:   blur(22px) saturate(1.15);
@@ -151,7 +152,7 @@ body{
 }
 img{display:block;max-width:100%}
 a{color:inherit}
-::selection{background:rgba(224,154,62,.3);color:#fff8ec}
+::selection{background:rgba(214,214,214,.3);color:#ffffff}
 :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
 html{scrollbar-width:thin;scrollbar-color:rgba(233,223,208,.15) transparent}
 ::-webkit-scrollbar{width:4px}
@@ -163,7 +164,7 @@ html{scrollbar-width:thin;scrollbar-color:rgba(233,223,208,.15) transparent}
 
 .skip{
   position:absolute;top:-999px;left:1rem;
-  background:var(--accent);color:#1a1005;
+  background:var(--accent);color:#141414;
   font-family:var(--sans);font-size:.75rem;font-weight:600;
   letter-spacing:.1em;text-transform:uppercase;
   padding:.75rem 1.25rem;text-decoration:none;
@@ -197,13 +198,13 @@ html{scrollbar-width:thin;scrollbar-color:rgba(233,223,208,.15) transparent}
   position:fixed;inset:0;pointer-events:none;z-index:1;opacity:.5;
   background:
     radial-gradient(ellipse 80% 60% at 15% 0%, rgba(123,95,146,.10), transparent 60%),
-    radial-gradient(ellipse 70% 55% at 85% 100%, rgba(176,92,34,.10), transparent 60%);
+    radial-gradient(ellipse 70% 55% at 85% 100%, rgba(200,200,200,.05), transparent 60%);
   animation:wash 24s ease-in-out infinite alternate;
 }
 @keyframes wash{from{opacity:.35}to{opacity:.65}}
 
 .leaves-layer{position:fixed;inset:0;pointer-events:none;z-index:3;overflow:hidden}
-.leaf{position:absolute;top:0;left:0;will-change:transform;filter:brightness(.85) saturate(1.1) drop-shadow(0 0 14px rgba(224,154,62,.12))}
+.leaf{position:absolute;top:0;left:0;will-change:transform;filter:grayscale(1) brightness(.85) drop-shadow(0 0 14px rgba(220,220,220,.1))}
 
 /* ═══════════════════════════════════════════════════════════
    NAV — disappears into the hero, returns as dark glass.
@@ -271,8 +272,17 @@ html{scrollbar-width:thin;scrollbar-color:rgba(233,223,208,.15) transparent}
   padding:.35rem 1.5rem;transition:color var(--dur-short) var(--ease);
 }
 .nav-drawer a:hover{color:var(--accent-text)}
-.drawer-platforms{display:flex;gap:1rem;margin-bottom:var(--s1)}
-.drawer-platforms img{width:22px;height:22px;object-fit:contain}
+.drawer-bandcamp{
+  display:inline-flex;align-items:center;justify-content:center;gap:.6rem;
+  width:auto;margin-bottom:var(--s1);
+  padding:.85rem 1.5rem;border-radius:99px;
+  background:var(--accent);color:#141414!important;
+  font-family:var(--sans)!important;font-style:normal!important;
+  font-size:.85rem!important;font-weight:600;letter-spacing:.06em;
+  text-decoration:none;
+}
+.drawer-bandcamp:hover{background:var(--accent-text);color:#141414!important}
+.drawer-bandcamp img{width:18px;height:18px;object-fit:contain}
 .nav-drawer-share{
   margin-top:var(--s1);font-family:var(--sans);font-size:.72rem;font-weight:600;
   letter-spacing:.14em;text-transform:uppercase;color:var(--text-mid);
@@ -342,7 +352,7 @@ html{scrollbar-width:thin;scrollbar-color:rgba(233,223,208,.15) transparent}
   position:absolute;top:-9px;left:-9px;z-index:2;
   font-family:var(--sans);font-size:.58rem;font-weight:600;
   letter-spacing:.16em;text-transform:uppercase;
-  color:#1a1005;background:var(--accent);
+  color:#141414;background:var(--accent);
   padding:.2rem .5rem;border-radius:99px;
   animation:badge-pulse 3s ease-in-out infinite;
 }
@@ -360,7 +370,7 @@ html{scrollbar-width:thin;scrollbar-color:rgba(233,223,208,.15) transparent}
 .hero-featured-play{
   display:flex;align-items:center;justify-content:center;
   width:44px;height:44px;border-radius:50%;border:none;cursor:pointer;
-  color:#1a1005;background:var(--accent);
+  color:#141414;background:var(--accent);
   box-shadow:0 0 28px var(--accent-glow);
   transition:transform var(--dur-short) var(--ease-spring),background var(--dur-short) var(--ease);
 }
@@ -427,7 +437,7 @@ html{scrollbar-width:thin;scrollbar-color:rgba(233,223,208,.15) transparent}
 .plate-play-circle{
   display:flex;align-items:center;justify-content:center;
   width:64px;height:64px;border-radius:50%;
-  color:#1a1005;background:var(--accent);
+  color:#141414;background:var(--accent);
   box-shadow:0 0 40px var(--accent-glow),0 8px 24px rgba(0,0,0,.4);
   transition:transform var(--dur-short) var(--ease-spring);
 }
@@ -453,8 +463,8 @@ html{scrollbar-width:thin;scrollbar-color:rgba(233,223,208,.15) transparent}
   transition:border-color var(--dur-short) var(--ease),background var(--dur-short) var(--ease),transform var(--dur-short) var(--ease),color var(--dur-short) var(--ease);
 }
 .btn:hover{border-color:var(--border-hover);background:var(--bg-elevated);transform:translateY(-1px)}
-.btn-fill{background:var(--accent);border-color:var(--accent);color:#1a1005}
-.btn-fill:hover{background:var(--accent-text);border-color:var(--accent-text);color:#1a1005}
+.btn-fill{background:var(--accent);border-color:var(--accent);color:#141414}
+.btn-fill:hover{background:var(--accent-text);border-color:var(--accent-text);color:#141414}
 .btn img{width:15px;height:15px;object-fit:contain}
 .plate-lyrics-btn{
   display:inline-flex;align-items:center;gap:.45rem;align-self:flex-start;
@@ -761,7 +771,7 @@ body.player-active{padding-bottom:68px}
   width:68px;height:68px;border-radius:50%;
   background:var(--accent);border:none;cursor:pointer;
   display:flex;align-items:center;justify-content:center;
-  color:#1a1005;
+  color:#141414;
   box-shadow:0 6px 24px var(--accent-glow);
   transition:transform .15s var(--ease-spring),box-shadow .25s var(--ease);
   -webkit-tap-highlight-color:transparent;
@@ -836,9 +846,9 @@ body.player-active{padding-bottom:68px}
   <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-drawer">Menu</button>
 </nav>
 <nav class="nav-drawer" id="nav-drawer" aria-label="Mobile menu" aria-hidden="true">
-  <div class="drawer-platforms">
-    <a href="https://autumnchildokc.bandcamp.com" target="_blank" rel="noopener" aria-label="Bandcamp"><img src="Icons/Bandcamp.png" alt="Bandcamp"/></a>
-  </div>
+  <a href="https://autumnchildokc.bandcamp.com" target="_blank" rel="noopener" class="drawer-bandcamp">
+    <img src="Icons/Bandcamp.png" alt="" aria-hidden="true"/> Bandcamp
+  </a>
   <a href="#epk">Press Kit</a>
   <a href="#contact">Contact</a>
   <a href="#music">Music</a>
